@@ -14,7 +14,7 @@ dataframe = dfuser.join(dfexperiment)
 df_no_spain = dataframe.loc[dataframe.country != 'Spain',:]
 df_no_spain.groupby("test")[["conversion"]].mean()
 #       conversion
-# test
+# Test
 # 0       0.048292
 # 1       0.043411
 
