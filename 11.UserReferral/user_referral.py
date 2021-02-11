@@ -51,7 +51,7 @@ def daily_statistics(df):
 referral.groupby('country').apply(daily_statistics)
 
 
-###################
+##################
 fig, axes = plt.subplots(3, 1, sharex=True)
 colors = ['r','g','b']
 for index,col in enumerate(['total_spent','n_purchase','n_customer']):
