@@ -7,9 +7,6 @@ plt.style.use('ggplot')
 
 from scipy.stats import norm
 
-dfexperiment = pd.read_csv('test_table.csv',index_col='user_id')
-dfuser = pd.read_csv('user_table.csv',index_col="user_id")
-dataframe = dfuser.join(dfexperiment)
 
 df_no_spain = dataframe.loc[dataframe.country != 'Spain',:]
 df_no_spain.groupby("test")[["conversion"]].mean()
