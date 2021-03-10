@@ -40,10 +40,7 @@ y = dataframe.converted
 y.mean()# =0.032, only 3.2% converted
 
 
-Xtrain,Xtest,ytrain,ytest = train_test_split(X,y,test_size=0.333)
-# ytrain.mean() ~= ytest.mean(), indicates the split is unbiased
-ytrain.mean()# 0,0324
-ytest.mean()# 0.0320
+
 
 dt = DecisionTreeClassifier()
 params = {
