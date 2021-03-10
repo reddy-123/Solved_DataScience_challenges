@@ -148,7 +148,10 @@ ytest_adjpred = adjust_predict(Xtest,threshold)
 print classification_report(ytest,ytest_adjpred)
 
 ##############################
-
+precisions,recalls,thresholds = precision_recall_curve(ytest,ytest_pred_proba)
+plt.plot(precisions,recalls,marker='o',markersize=3)
+plt.xlabel("Precisions")
+plt.ylabel('Recalls')
 
 #####################################
 def count_result_ratio(df):
