@@ -56,7 +56,13 @@ def avg_net_revenue_per_show(df):
 net_revenue_per_show_grps = ads.groupby("ad").apply(avg_net_revenue_per_show).sort_values(ascending=False)
 
 ###################
+def __statistics(values,suffix,d):
+    d['mean_{}'.format(suffix)] = values.mean()
 
+    qs = [25, 50, 75]
+    percentiles = np.percentile(values, qs)
+    for q, p in itertools.izip(qs, percentiles):
+        d['{}p_{}'.format(q,suffix)] = p
 
 def statistics_changes(df):
     costs = df.sort_values(by='date')['cost'].values
