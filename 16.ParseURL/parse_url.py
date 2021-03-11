@@ -28,7 +28,23 @@ def parse_url(url):
 
 
 ####################################
+def load_parse():
+    succ_urls = []
+    fail_urls = []
+    with open("url_list.txt",'rt') as inf:
+        for index,line in enumerate(inf):
+            try:
+                url = parse_url(line.strip())
+                succ_urls.append(url)
+            except:
+                fail_urls.append(line)
+                print "failed to parse: {}".format(line)
 
+            if index%100 ==0:
+                print '{} lines parsed'.format(index)
+
+    print "************ ALL DONE ************"
+    return succ_urls,fail_urls
 
 succ_urls,fail_urls = load_parse()
 assert len(fail_urls) == 0
