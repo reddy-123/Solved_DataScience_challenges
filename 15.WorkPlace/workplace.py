@@ -68,7 +68,20 @@ X["is_male"] = (X.sex == "M").astype(int)
 del X["sex"]
 del X['boss_id']
 
+index2level = ['IC','MM',"D","VP","E","CEO"]
+level2index = {l:index for index,l in enumerate(index2level)}
 
+index2degree = ['High_School','Bachelor','Master','PhD']
+degree2index = {d:index for index,d in enumerate(index2degree)}
+
+X['level'] = X.level.map(level2index)
+np.corrcoef(X.level,X.n_subordinates)
+
+X['degree'] = X.degree_level.map(degree2index)
+del X['degree_level']
+
+X = pd.get_dummies(X)
+del X['dept_CEO']
 
 X.to_csv("preproc_employees.csv",index_label="employee_id")
 
