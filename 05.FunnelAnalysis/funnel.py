@@ -62,7 +62,22 @@ page_dist.plot(kind="bar")
 pages = ["home_page","search_page","payment_page","payment_confirmation_page"]
 allusers["page"] = allusers.page.astype("category",categories = pages,ordered=True)
 
+def conversion_rates(df):
+    stage_counts = df.page.value_counts()
+    convert_from = stage_counts.copy()
 
+    total = df.shape[0]
+    for page in stage_counts.index:
+        n_left = stage_counts.loc[page]
+        n_convert = total - n_left
+        convert_from[page] = n_convert
+        total = n_convert
+
+    cr = pd.concat([stage_counts,convert_from],axis=1,keys=["n_drop","n_convert"])
+    cr["convert_rates"] = cr.n_convert.astype(np.float)/(cr.n_drop + cr.n_convert)
+    cr['drop_rates'] = 1 - cr.convert_rates
+
+    return cr
 
 all_convert_rates = conversion_rates(allusers)
 
