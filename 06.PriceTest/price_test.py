@@ -104,13 +104,7 @@ testdata = pd.read_csv("test_results.csv",index_col="user_id")
 del testdata["timestamp"]
 testdata.rename(columns = {'operative_system':'OS'},inplace=True)
 
-def avg_converted_revenue(df):
-    avg_convert_rate = np.mean( df.converted)
-    avg_revenue = np.mean(df.price * df.converted)
-    return pd.Series({'avg_convert_rate':avg_convert_rate,"avg_revenue":avg_revenue})
-testdata.groupby(by="test").apply(avg_converted_revenue)
 
-testdata_ohe = pd.get_dummies(testdata)
 
 feat_labels = ['price',u'source_ads-bing',u'source_ads-google', u'source_ads-yahoo', u'source_ads_facebook',
                u'source_ads_other', u'source_direct_traffic',u'source_friend_referral',
